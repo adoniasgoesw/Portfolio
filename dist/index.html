@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <script type="module" crossorigin src="/assets/index-CR6hcnRG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-7qSs7oIT.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Polyfill para ambientes onde crypto.randomUUID não existe.
+      // (Algumas libs dependem disso durante a avaliação do módulo.)
+      (function () {
+        try {
+          if (window.crypto && !window.crypto.randomUUID) {
+            window.crypto.randomUUID = function () {
+              var s = [];
+              var hex = "0123456789abcdef";
+              for (var i = 0; i < 36; i++) {
+                s[i] = hex[Math.floor(Math.random() * 16)];
+              }
+              s[14] = "4";
+              s[19] = hex[(parseInt(s[19], 16) & 0x3) | 0x8];
+              s[8] = s[13] = s[18] = s[23] = "-";
+              return s.join("");
+            };
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </body>
+</html>
