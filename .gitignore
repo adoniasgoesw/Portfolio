@@ -1,0 +1,19 @@
+# Dependencies (never commit — Netlify installs fresh on Linux)
+node_modules/
+
+# Build output
+dist/
+
+# Local / editor
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+
+# Vite
+.vite/
