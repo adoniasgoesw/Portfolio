@@ -1,43 +1,54 @@
 import ContactForm from "../components/ContactForm";
-import SectionHeader from "../components/SectionHeader";
-import useT from "../i18n/useT";
 import SocialIcons from "../components/SocialIcons";
 import { useTheme } from "../context/ThemeContext";
-
 export default function Contact() {
-  const t = useT();
   const { theme } = useTheme();
   const isDark = theme === "dark";
+
   return (
-    <section id="contact" className="px-4 sm:px-10 md:px-16 lg:px-20 xl:px-40 py-16  min-h-[800px]">
+    <section
+      id="contact"
+      className={`px-4 sm:px-10 md:px-16 lg:px-20 xl:px-40 py-16 relative ${
+        isDark ? "bg-dark-quaternary" : "bg-light-quaternary"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex flex-col gap-10 items-center justify-center">
-      <SectionHeader
-        tag={t("contact.tag")}
-        title={t("contact.title")}
-        description={t("contact.description")}
-      />
-
-      <div className="flex flex-col gap-10 md:flex-row max-w-4xl mx-auto">
-        <div className="w-full md:w-1/2 flex flex-col gap-4">
-          <h3 className={`text-3xl font-bold ${isDark ? "text-light-quaternary" : "text-dark-quaternary"}`}>
-            {t("contact.h3Prefix")}{" "}
-            <span className={`${isDark ? "text-light-primary" : "text-dark-secondary"}`}>{t("contact.h3Span")}</span>{" "}
-            {t("contact.h3Suffix")}
-          </h3>
-          <p className={`text-sm ${isDark ? "text-light-quaternary/80" : "text-neutral-primary"}`}>
-            {t("contact.p")}
+        <div className="max-w-3xl mx-auto text-center flex flex-col gap-4">
+          <h2
+            className={`text-3xl sm:text-4xl md:text-5xl font-extrabold ${
+              isDark ? "text-light-quaternary" : "text-dark-quaternary"
+            }`}
+          >
+            Ready for the{" "}
+            <span className={isDark ? "text-accent-primary" : "text-accent-primary"}>
+              Next Mission
+            </span>
+            ?
+          </h2>
+          <p
+            className={`text-sm sm:text-base leading-relaxed ${
+              isDark ? "text-light-quaternary/80" : "text-neutral-primary"
+            }`}
+          >
+            Send a message and let&apos;s build something legendary.
           </p>
-          <SocialIcons
-              variant="plain"
-              ulClassName="flex items-center gap-3"
-            />
         </div>
 
-        <div className="w-full md:w-1/2 flex justify-center items-center ">
-          <ContactForm />
+        <div className="w-full max-w-2xl">
+          <div
+            className={`rounded-3xl p-1 ${
+              isDark
+                ? "bg-light-quaternary/5 border border-light-quaternary/10 backdrop-blur-sm"
+                : "bg-white/70 border border-white/70 backdrop-blur-sm"
+            }`}
+          >
+            <ContactForm />
+          </div>
+          <div className="mt-5 flex justify-center">
+            <SocialIcons variant="outline" ulClassName="flex flex-wrap justify-center gap-3" />
+          </div>
         </div>
-      </div>
       </div>
     </section>
-  );
+  )
 }

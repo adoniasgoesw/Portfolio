@@ -1,63 +1,162 @@
-import * as React from "react"
-import { cva } from "class-variance-authority";
-import { Slot } from "radix-ui"
+import { useRef, useState } from "react";
+import { useTheme } from "../../context/ThemeContext";
 
-import { cn } from "@/components/lib/utils"
-
-const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-        outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-        ghost:
-          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
-        destructive:
-          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default:
-          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
-        icon: "size-8",
-        "icon-xs":
-          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm":
-          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-9",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
-
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  asChild = false,
-  ...props
+export default function Button({
+  text = "",
+  icon: Icon,
+  variant = "primary",
+  type = "button",
+  onClick,
+  ariaLabel,
+  className = "",
+  disabled = false,
+  iconAnimation = "none",
 }) {
-  const Comp = asChild ? Slot.Root : "button"
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const isIconButton = variant === "icon";
+  const isHoverable = !isIconButton;
+  const hoverScaleValue = ["primary", "outline"].includes(variant) ? 1.04 : 1.02;
+  const clickScaleValue = 0.97;
+  const base =
+    "inline-flex items-center justify-center gap-2 rounded-xl font-bold text-sm leading-none whitespace-nowrap transition-transform duration-250 ease-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
+  const hover = "";
+
+  const variants = {
+    primary: isDark
+      ? "bg-dark-secondary text-white hover:bg-[var(--color-accent-secondary)]"
+      : "bg-light-secondary text-white hover:bg-[var(--color-accent-secondary)]",
+    secondary: isDark
+      ? "bg-dark-secondary text-light-quaternary border border-neutral-quaternary hover:bg-dark-primary"
+      : "bg-light-secondary text-dark-quaternary border border-light-secondary hover:bg-light-primary",
+    orange: isDark
+      ? "bg-[var(--color-accent-primary)] text-white hover:bg-[var(--color-accent-secondary)]"
+      : "bg-[var(--color-accent-primary)] text-white hover:bg-[var(--color-accent-secondary)]",
+    blue: isDark
+      ? "bg-dark-secondary text-light-quaternary border border-neutral-quaternary hover:bg-dark-primary"
+      : "bg-light-secondary text-dark-quaternary border border-light-secondary hover:bg-light-primary",
+    icon: isDark ? "bg-transparent text-light-quaternary" : "bg-transparent text-dark-quaternary",
+    outline: isDark
+      ? "bg-transparent border border-light-quaternary/70 text-light-quaternary hover:bg-light-quaternary/10 hover:border-light-quaternary"
+      : "bg-transparent border border-light-quaternary/40 text-light-quaternary hover:bg-light-quaternary/5 hover:border-light-quaternary/70",
+    outlineSecondary: isDark
+      ? "bg-transparent border border-white text-white hover:bg-white/12 hover:border-white"
+      : "bg-transparent border border-neutral-quaternary text-neutral-quaternary hover:bg-neutral-quaternary/5",
+    outlineLight: isDark
+      ? "bg-transparent border border-light-quaternary/70 text-light-quaternary hover:bg-light-quaternary/10 hover:border-light-quaternary"
+      : "bg-transparent border border-light-quaternary text-neutral-tertiary hover:bg-light-quaternary/40 hover:border-light-quaternary",
+    outlineDark: isDark
+      ? "bg-transparent border border-dark-secondary text-light-quaternary hover:bg-dark-secondary/40 hover:border-dark-primary"
+      : "bg-transparent border border-dark-quaternary text-dark-quaternary hover:bg-dark-quaternary/5 hover:border-dark-quaternary/80",
+    outlineOrange: isDark
+      ? "bg-transparent border border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary)]/15"
+      : "bg-transparent border border-[var(--color-accent-secondary)] text-[var(--color-accent-secondary)] hover:bg-[var(--color-accent-primary)]/12",
+    lang: isDark
+      ? "bg-transparent text-light-quaternary font-normal"
+      : "bg-transparent text-dark-quaternary font-normal",
+  };
+
+  const sizes = {
+    primary: "px-6 py-4",
+    secondary: "px-4 py-2 min-h-[44px]",
+    orange: "px-6 py-4",
+    blue: "px-6 py-4",
+    outline: "px-6 py-4",
+    outlineLight: "px-6 py-4",
+    outlineDark: "px-6 py-4",
+    outlineOrange: "px-6 py-4",
+    icon: "p-2",
+    lang: "h-10 w-10",
+    outlineSecondary: "px-4 py-2 min-h-[44px]",
+  };
+
+  const timeoutRef = useRef(null);
+  const clickScaleTimeoutRef = useRef(null);
+  const [iconTransform, setIconTransform] = useState("translateY(0) scale(1)");
+  const [buttonScale, setButtonScale] = useState(1);
+  const hoveredRef = useRef(false);
+
+  const triggerIconAnimation = () => {
+    if (!Icon || disabled || iconAnimation === "none") return;
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    if (iconAnimation === "grow") {
+      setIconTransform("translateY(0) scale(1.35)");
+    } else if (iconAnimation === "drop") {
+      setIconTransform("translateY(4px) scale(1.02)");
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setIconTransform("translateY(0) scale(1)");
+    }, 260);
+  };
+
+  const handleClick = (e) => {
+    triggerIconAnimation();
+    if (isHoverable) {
+      if (clickScaleTimeoutRef.current)
+        window.clearTimeout(clickScaleTimeoutRef.current);
+      setButtonScale(clickScaleValue);
+      clickScaleTimeoutRef.current = window.setTimeout(
+        () => setButtonScale(hoveredRef.current ? hoverScaleValue : 1),
+        240
+      );
+    }
+    onClick?.(e);
+  };
 
   return (
-    <Comp
-      data-slot="button"
-      data-variant={variant}
-      data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props} />
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={handleClick}
+      aria-label={ariaLabel}
+      onMouseEnter={
+        isHoverable
+          ? () => {
+              hoveredRef.current = true;
+              if (clickScaleTimeoutRef.current)
+                window.clearTimeout(clickScaleTimeoutRef.current);
+              setButtonScale(hoverScaleValue);
+            }
+          : undefined
+      }
+      onMouseLeave={
+        isHoverable
+          ? () => {
+              hoveredRef.current = false;
+              if (clickScaleTimeoutRef.current)
+                window.clearTimeout(clickScaleTimeoutRef.current);
+              setButtonScale(1);
+            }
+          : undefined
+      }
+      className={[
+        base,
+        hover,
+        sizes[variant] ?? sizes.primary,
+        variants[variant] ?? variants.primary,
+        variant === "lang" ? "btn-lang" : "",
+        variant === "icon" ? "btn-icon" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={{ transform: `scale(${buttonScale})` }}
+    >
+      {Icon ? (
+        <span
+          className="btn-icon-wrap inline-flex items-center justify-center will-change-transform"
+          style={{
+            transform: iconTransform,
+            transition: "transform 260ms ease-in-out",
+          }}
+        >
+          <Icon className="size-4" />
+        </span>
+      ) : null}
+      {variant !== "icon" && text ? text : null}
+    </button>
   );
 }
-
-export { Button, buttonVariants }

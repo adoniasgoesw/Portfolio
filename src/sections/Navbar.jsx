@@ -1,43 +1,37 @@
-  import { useEffect, useState } from "react";
-  import { Sun, Moon, Menu, X } from "lucide-react";
-  import Button from "../components/button";
-import { useLanguage } from "../context/LanguageContext";
+import { useEffect, useState } from "react";
+import { Sun, Moon, Menu, X } from "lucide-react";
+import Button from "../components/ui/Button";
 import { useTheme } from "../context/ThemeContext";
-import useT from "../i18n/useT";
-import { navItems } from "../data/Data";
+import { navItems } from "../data/portfolioData.js";
 
 export default function Navbar({
   onRotateLeft180 = () => {},
   showSun = true,
 }) {
-    const { lang, toggleLanguage } = useLanguage();
-    const { theme } = useTheme();
-    const t = useT();
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+  const { theme } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-      const onScroll = () => setScrolled(window.scrollY > 0);
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    const resolveNavLabel = (labelKey) => t(labelKey);
-
-    return (
-      <>
-        <header
-          className={[
+  return (
+    <>
+      <header
+        className={[
             "fixed top-0 left-0 right-0 z-50 px-4 sm:px-10 md:px-16 lg:px-20 xl:px-40 py-4 w-full transition-all duration-200",
             scrolled
               ? theme === "dark"
                 ? "bg-dark-quaternary/40 backdrop-blur-xs"
                 : "bg-white/0 backdrop-blur-xs"
               : "bg-transparent",
-          ].join(" ")}
-        >
-          <nav className="max-w-7xl mx-auto flex justify-between items-center">
+        ].join(" ")}
+      >
+        <nav className="max-w-7xl mx-auto flex justify-between items-center">
             <a
               href="#hero"
               className={`font-bold ${
@@ -58,7 +52,7 @@ export default function Navbar({
                         : "text-dark-quaternary hover:text-light-quaternary/80"
                     }`}
                   >
-                    {resolveNavLabel(item.labelKey)}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -79,8 +73,8 @@ export default function Navbar({
               <Button
                 type="button"
                 ariaLabel="Language"
-                text={lang === "en" ? "EN" : "PT"}
-                onClick={() => toggleLanguage()}
+                text="EN"
+                onClick={() => {}}
                 variant="lang"
                 className={`no-auto-translate ${
                   theme === "dark" ? "text-light-quaternary" : ""
@@ -130,7 +124,7 @@ export default function Navbar({
                           : "text-dark-quaternary hover:text-dark-quaternary/70"
                       }`}
                     >
-                      {resolveNavLabel(item.labelKey)}
+                      {item.label}
                     </a>
                   </li>
                 ))}
@@ -138,6 +132,6 @@ export default function Navbar({
             </div>
           </div>
         ) : null}
-      </>
-    );
-  }
+    </>
+  );
+}
