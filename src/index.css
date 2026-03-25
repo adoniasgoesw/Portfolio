@@ -5,8 +5,25 @@
 
 @layer base {
   html, body {
-    height: 100%;
     overflow-x: hidden;
+    /* Impede que scroll horizontal apareça */
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+    overscroll-behavior: none; /* impede bounce do scroll */
+  }
+  
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Safari, Chrome, Android */
+  }
+  
+  /* Para modal ou qualquer div scrollable */
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 

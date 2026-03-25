@@ -14,7 +14,11 @@ export default function Navbar() {
     const textClass = isDark ? "text-light-quaternary text-sm" : "text-dark-quaternary text-sm";
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 0);
+        const onScroll = () => {
+            const scrollTop = document.documentElement.scrollTop;
+            setScrolled(scrollTop > 10); // usa 10 pra evitar flicker
+            
+          };
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
@@ -35,7 +39,7 @@ export default function Navbar() {
             <header
                 data-navbar
                 className={[
-                    "fixed top-0 left-0 right-0 z-50 px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-40 transition-all duration-200 z-50",
+                    "fixed top-0 left-0 right-0 z-50 px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-40 transition-all duration-200 ",
                     scrolled
                         ? isDark
                             ? "bg-dark-quaternary/40 backdrop-blur-xs"
