@@ -4,7 +4,7 @@ A front-end developer portfolio built with an RPG / “dev adventurer” theme.
 
 This project is designed like a small quest hub: sections are presented as “missions”, the UI uses playful fantasy language, and the visuals (waves, stars, avatar) help create a lightweight game-like atmosphere—without sacrificing performance, accessibility, and responsive layout.
 
-If you found this project useful or inspiring, please consider giving it a **star**.
+
 
 ## What’s inside
 
