@@ -59,6 +59,15 @@ Those variables automatically point to the light/dark palette via `:root` and `:
 - **Hero**: initial entrance animations for the main content, waves and avatar.
 - **Section headers** (`Skills`, `Projects`, `Contact`): animate **from bottom to top** + fade in when the section reaches the viewport.
 - **Footer**: animates with **scale + opacity** when it enters the viewport.
+- **Skill cards**: cards fade/slide in on scroll; progress bars and percentages animate with delay based on rank.
+
+## Latest updates
+
+- Replaced the browser icon with `Avatar3` (`/favicon.png`).
+- Improved skill card UI for dark mode (better contrast, cleaner typography, smoother hover highlight).
+- Added two-line clamp with ellipsis for long skill descriptions.
+- Added animated rank progress (bar + counter from 0 to target value).
+- Prevented horizontal side scrolling on mobile/tablet by locking x-overflow.
 
 ## Development
 
