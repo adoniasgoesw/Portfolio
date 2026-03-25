@@ -101,3 +101,18 @@ This repo includes a SPA redirect rule for Netlify at `public/_redirects`:
 ```
 
 That prevents 404s on refresh and direct linking when using client-side routing.
+
+---
+
+Developer  
+**Adonias Goes**
+
+GitHub: `@adoniasgoesw`
+
+## 🤝 Contributing
+
+Contributions are always welcome! Feel free to open an issue or submit a pull request.
+
+Developed with ❤️ to facilitate restaurant management
+
+⭐ If this project was useful to you, consider giving it a star!

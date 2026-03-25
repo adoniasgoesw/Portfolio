@@ -1,4 +1,4 @@
-import { navItems } from "../data/Data";
+import { navItems } from "../data/data";
 import Button from "../components/buttons/Button";
 import { Menu, Sun, Moon, X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
