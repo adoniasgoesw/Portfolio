@@ -113,6 +113,6 @@ GitHub: `@adoniasgoesw`
 
 Contributions are always welcome! Feel free to open an issue or submit a pull request.
 
-Developed with ❤️ to facilitate restaurant management
+Developed with ❤️ 
 
 ⭐ If this project was useful to you, consider giving it a star!
