@@ -17,7 +17,7 @@ export default function Modal({ open, onClose, project }) {
   };
 
   return (
-    <div className="fixed inset-0 z-[99]">
+    <div className="fixed inset-0 z-[99] h-[100vdh]">
       {/* Backdrop */}
       <button
         aria-label="Close project modal backdrop"
@@ -28,7 +28,7 @@ export default function Modal({ open, onClose, project }) {
       {/* Panel */}
       <div
         className={[
-          "absolute top-0 right-0 bottom-0",
+          "absolute top-0 right-0 bottom-0 h-[100vdh]",
           "w-full sm:w-[380px] md:w-[420px] lg:w-[480px]",
           "p-6 shadow-xl flex flex-col",
           isDark ? "bg-dark-quaternary/95" : "bg-white/95",

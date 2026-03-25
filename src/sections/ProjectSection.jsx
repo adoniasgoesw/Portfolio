@@ -12,7 +12,7 @@ export default function ProjectSection() {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
     return (
-        <section className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[800px] flex flex-col relative  `}>
+        <section className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[100vdh] flex flex-col relative  `}>
             <div className="max-7xl mx-auto flex flex-col gap-15 justify-center items-center">
                 <div>
                 <motion.div

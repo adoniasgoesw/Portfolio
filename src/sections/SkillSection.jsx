@@ -7,7 +7,7 @@ export default function SkillSection() {
     const { theme } = useTheme();
     const isDark = theme === "dark";
     return (
-        <section id="skills" className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[800px]`}>
+        <section id="skills" className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[100vdh]`}>
             <div className="max-w-4xl mx-auto w-full flex flex-col gap-15 items-center justify-center ">
                 <div>
                 <motion.div

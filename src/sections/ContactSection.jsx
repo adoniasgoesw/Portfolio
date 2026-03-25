@@ -10,7 +10,7 @@ export default function ContactSection() {
     const isDark = theme === "dark";
     const [startPlaceholderTyping, setStartPlaceholderTyping] = useState(false);
     return (
-        <section className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[800px] flex justify-center`}>
+        <section className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[100vdh] flex justify-center`}>
             <div className="max-w-7xl flex flex-col justify-center items-center gap-15">
                 <div>
                 <motion.div
