@@ -90,13 +90,13 @@ export default function HeroSection() {
                     className="absolute inset-0 z-0"
                 />
             ) : null}
-            <div data-hero className="mt-20 max-w-4xl mx-auto w-full flex flex-col items-center justify-center gap-10 relative z-20">
+            <div data-hero className="mt-20 max-w-7xl mx-auto w-full flex flex-col items-center justify-center gap-10 relative z-20">
                 <Avatar />
                 <ToggleTheme />
 
                 <div className="relative z-20">
                 <HeaderSection variant="primary" title="Front-end Developer" description="Transformando ideias em interfaces modernas ao longo da minha jornada no front-end."
-                         tagName="Software Engineer" />
+                         tagName="Start the Jorney" />
 
 
 

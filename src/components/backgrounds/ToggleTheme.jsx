@@ -8,7 +8,7 @@ export default function ToggleTheme() {
 
   return (
     <div
-      className="absolute -bottom-65 -right-30 sm:-bottom-90 sm:-right-40  w-62 h-62 z-0 pointer-events-auto will-change-transform"
+      className="absolute -bottom-65 -right-30 sm:-bottom-90 sm:-right-10  w-62 h-62 z-0 pointer-events-auto will-change-transform"
       style={{ transform: `rotate(${rotationDeg}deg)` }}
     >
       <div className="relative h-full w-full toggle-theme-float">

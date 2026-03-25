@@ -26,7 +26,7 @@ export default function Footer() {
         className="relative z-10 flex items-end justify-start max-w-7xl w-full h-[500px] "
         initial={{ scale: 0.96, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="flex flex-col items-start justify-end gap-6">

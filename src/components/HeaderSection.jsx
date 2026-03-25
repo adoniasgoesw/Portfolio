@@ -18,18 +18,18 @@ export default function HeaderSection({
     primary: {
       container: "flex flex-col gap-2 items-center justify-center text-center",
       title: isDark
-        ? "text-4xl md:text-5xl font-bold text-title-primary mt-4 "
-        : "text-4xl md:text-5xl font-bold text-title-primary mt-4",
+        ? "text-4xl md:text-5xl font-bold text-title-primary mt-4 text-center "
+        : "text-4xl md:text-5xl font-bold text-title-primary mt-4 text-center",
       description: isDark
       ? "text-light-quaternary/80 text-center max-w-sm text-sm"
-      : "text-light-quaternary/80 text-center max-w-sm text-sm",
+      : "text-light-quaternary/80 text-center max-w-sm text-sm ",
       tag: "",
     },
     secondary: {
       container: "",
       title: isDark
-        ? "text-4xl font-bold text-title-primary mt-4"
-        : "text-4xl font-bold text-title-secondary mt-4",
+        ? "text-4xl font-bold text-title-primary mt-4 text-center"
+        : "text-4xl font-bold text-title-secondary mt-4 text-center",
       description: isDark
         ? "text-light-quaternary/80 text-center max-w-lg text-sm"
         : "text-neutral-primary text-center max-w-lg text-sm",

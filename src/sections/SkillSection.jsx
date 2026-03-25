@@ -13,7 +13,7 @@ export default function SkillSection() {
                 <motion.div
                     initial={{ y: 24, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, amount: 0.35 }}
+                    viewport={{ amount: 0.35 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                     <HeaderSection
@@ -34,7 +34,7 @@ export default function SkillSection() {
                             key={skill.label}
                             initial={{ y: 22, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true, amount: 0.25 }}
+                            viewport={{ amount: 0.25 }}
                             transition={{ duration: 0.55, ease: "easeOut", delay: idx * 0.06 }}
                         >
                             <SkillCard {...skill} index={idx} />

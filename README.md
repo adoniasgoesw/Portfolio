@@ -9,7 +9,7 @@ If you found this project useful or inspiring, please consider giving it a **sta
 ## What’s inside
 
 - **Dark/Light theme**: persisted in `localStorage` and applied before the first paint to avoid flashing on refresh.
-- **Scroll-based section entrances**: section headers animate when they enter the viewport (not on initial load).
+- **Scroll-based section entrances**: sections animate when entering the viewport, both while scrolling down and back up.
 - **RPG-style visuals**: waves and a starfield background in dark mode.
 - **Responsive UI**: layout and spacing are built mobile-first with Tailwind.
 
@@ -57,9 +57,10 @@ Those variables automatically point to the light/dark palette via `:root` and `:
 ## Animations
 
 - **Hero**: initial entrance animations for the main content, waves and avatar.
-- **Section headers** (`Skills`, `Projects`, `Contact`): animate **from bottom to top** + fade in when the section reaches the viewport.
-- **Footer**: animates with **scale + opacity** when it enters the viewport.
+- **Section headers** (`Skills`, `Projects`, `Contact`): animate **from bottom to top** + fade in on viewport entry.
+- **Footer**: content animates with **scale + opacity** while keeping the wave layer static.
 - **Skill cards**: cards fade/slide in on scroll; progress bars and percentages animate with delay based on rank.
+- **Contact form**: form card fades/slides in first, then placeholders type sequentially (`name`, `email`, `message`).
 
 ## Latest updates
 
@@ -68,6 +69,9 @@ Those variables automatically point to the light/dark palette via `:root` and `:
 - Added two-line clamp with ellipsis for long skill descriptions.
 - Added animated rank progress (bar + counter from 0 to target value).
 - Prevented horizontal side scrolling on mobile/tablet by locking x-overflow.
+- Updated section triggers to replay animations when re-entering viewport.
+- Added dark-mode visual polish to contact form (contrast, focus, and input readability).
+- Added sequential typing placeholder effect in the contact form after card entrance animation.
 
 ## Development
 
