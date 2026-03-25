@@ -27,8 +27,8 @@ export default function ContactSection() {
                         <span className="font-extrabold text-accent-primary">Next Mission</span>
                       </>
                     }
-                    description="Send a message and let's build something legendary."
-                    tagName="Convocar o aventureiro"
+                    description="Send a message and let's build something impactful together."
+                    tagName="Call the Adventurer"
                   />
                 </motion.div>
                 </div>

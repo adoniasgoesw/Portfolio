@@ -35,7 +35,7 @@ export default function Navbar() {
             <header
                 data-navbar
                 className={[
-                    "fixed top-0 left-0 right-0 z-50 px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-40 transition-all duration-200",
+                    "fixed top-0 left-0 right-0 z-50 px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-40 transition-all duration-200 z-50",
                     scrolled
                         ? isDark
                             ? "bg-dark-quaternary/40 backdrop-blur-xs"

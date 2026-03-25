@@ -95,7 +95,7 @@ export default function HeroSection() {
                 <ToggleTheme />
 
                 <div className="relative z-20">
-                <HeaderSection variant="primary" title="Front-end Developer" description="Transformando ideias em interfaces modernas ao longo da minha jornada no front-end."
+                <HeaderSection variant="primary" title="Front-end Developer" description="On a quest as a front-end developer, mastering skills and completing missions to craft modern, responsive web interfaces."
                          tagName="Start the Jorney" />
 
 

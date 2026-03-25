@@ -19,11 +19,9 @@ export default function SkillSection() {
                     <HeaderSection
                         variant="secondary"
                         title="Skills & Tools"
-                        description="Tecnologias dominadas ao longo da jornada para construir aplicações modernas e eficientes."
-                        tagName="Habilidades desbloqueadas"
-                        titleClassName={isDark ? "text-light-quaternary" : ""}
-                        descriptionClassName={isDark ? "text-light-quaternary/80" : ""}
-                        tagClassName={isDark ? "text-light-quaternary" : ""}
+                        description="Technologies mastered throughout my journey to build modern and efficient applications."
+                        tagName="Unlocked Skills"
+                        
                     />
                 </motion.div>
                 </div>

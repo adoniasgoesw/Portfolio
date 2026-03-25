@@ -1,6 +1,10 @@
 import {FaCode, FaJs, FaReact, FaNodeJs} from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { BiLogoPostgresql } from "react-icons/bi";
+import Project01 from "../assets/Project01.jpeg"
+import Project02 from "../assets/Project02.jpeg"
+import Project03 from "../assets/Project03.jpeg"
+import Project04 from "../assets/Project04.jpeg"
 const navItems = [
     {
        label: "Home",
@@ -25,42 +29,79 @@ const skills = [
     {
         icon: <FaCode />,
         label: "Html & Css",
-        description: "Semantic markup and responsive styling with modern CSS.",
+        description: "Structured and responsive interfaces built with modern CSS.",
         rank: "Advanced"
     },
 
     {   
         icon: <FaJs />,
         label: "JavaScript",
-        description: "Interactive web development with dynamic behavior and client-side scripting.",
+        description: "Dynamic and interactive experiences for modern web applications.",
         rank: "Advanced"
     },
     {
         icon: <FaReact />,
         label: "React",
-        description: "Building scalable and efficient web applications with React.",
+        description: "Building scalable and component-based interfaces.",
         rank: "Intermediate"
     },
     {
         icon: <FaNodeJs />,
         label: "Node.js",
-        description: "Building scalable and efficient web applications with Node.js.",
+        description: "Backend fundamentals for building complete applications.",
         rank: "Beginner"
     },
 
     {
         icon: <RiTailwindCssFill />,
         label: "Tailwind CSS",
-        description: "Building scalable and efficient web applications with Tailwind CSS.",
+        description: "Fast and consistent UI development with utility-first styling.",
         rank: "Advanced"
     },
 
     {
         icon: <BiLogoPostgresql />,
         label: "PostgreSQL",
-        description: "Building scalable and efficient web applications with PostgreSQL.",
+        description: "Managing structured data and relational databases.",
         rank: "Intermediate"
     }
 ]
 
-export { navItems , skills};
+
+const projects = [
+    {   
+        image: Project01,
+        name: "iPhone 17 Experience",
+        desc: "Explore the ultimate iPhone 17 Pro – titanium design, pro-level camera, blazing A18 chip, and features crafted for the next generation of mobile performance",
+        skills: ["React", "Tailwindcss"],
+        link:"https://iphonefornow.netlify.app/",
+        github: "https://github.com/adoniasgoesw/iPhone-17"
+    },
+
+    {   image: Project01,
+        name: "Layers – The Design Flow",
+        desc: "A modern landing page for Layers, a powerful design tool that lets you create, prototype, and collaborate effortlessly. Combine simplicity with advanced features to stay in your creative flow.",
+        skills: ["React", "Tailwindcss"],
+        link:"https://layersdesigntools.netlify.app/",
+        github: "https://github.com/adoniasgoesw/Layers-Design-Tools"
+    },
+
+    {
+        image: Project01,
+        name: "FlorexTrade – Next-Gen Forex",
+        desc: "FlorexTrade is a modern forex trading platform designed for both novice and professional traders. With real-time analytics, institutional-grade security, and advanced trading tools, users can trade confidently and efficiently.",
+        skills: ["React", "Tailwindcss"],
+        link:"https://florextrader.netlify.app/",
+        github: "https://github.com/adoniasgoesw/FlorexTrade"
+    },
+
+    {
+        image: Project01,
+        name: "RPG Dev Portfolio",
+        desc: "Embark on a developer’s quest: a front-end portfolio styled like an RPG adventure, where each project is a mission, every skill is a power unlocked, and the UI blends magic with modern web technologies.",
+        skills: ["React", "Tailwindcss"],
+        link:"https://adoniasgoes.netlify.app/",
+        github: "https://github.com/adoniasgoesw/Portfolio/tree/main"
+    }
+]
+export { navItems , skills, projects};
