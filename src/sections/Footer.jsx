@@ -1,38 +1,48 @@
-import FooterAvatar from "../components/FooterAvatar";
-import CloudSecondary from "../components/backgrounds/CloudSecondary";
-import Clouds from "../components/backgrounds/Clouds";
-import { StarsBackground } from "../components/backgrounds/StarsBackground";
+import Waves from "../components/backgrounds/Waves";
+import { StarsBackground } from "../components/animate-ui/components/backgrounds/stars";
 import { useTheme } from "../context/ThemeContext";
-import SocialIcons from "../components/SocialIcons";
+import { motion } from "motion/react";
 
 export default function Footer() {
   const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
-    <footer className="relative flex flex-col gap-10 bg-light-primary py-5 overflow-hidden">
-      {theme === "dark" ? (
+    <section
+      className={`${isDark ? "bg-dark-primary" : "bg-light-primary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 relative overflow-hidden flex flex-col items-center justify-center`}
+    >
+      {isDark ? (
         <StarsBackground
           pointerEvents={false}
           starColor="#FFF"
-          className="absolute inset-0 z-0 bg-none"
+          className="absolute inset-0 z-0"
         />
       ) : null}
 
-      <div className="min-h-[500px] w-full relative rotate-180 -translate-y-8">
-        <Clouds position="top" />
-      </div>
-      <div className="flex flex-col gap-10 max-w-7xl mx-auto  w-full relative z-10 px-10">
-        
-    
+      {/* Waves on top, rotated 180° */}
+      <Waves position="top" className="rotate-180 -translate-y- z-10" />
 
-        <div className="flex flex-col gap-2">
-          <h1 className="text-xl font-bold w-1/4 text-balance text-light-quaternary">The End of the Journey... or just the beginning?</h1>
-          <p className="text-sm text-light-quaternary/80 text-balance w-1/2">Every great project starts with a simple idea. Let's build yours.</p>
+      <motion.footer
+        className="relative z-10 flex items-end justify-start max-w-7xl w-full h-[500px] "
+        initial={{ scale: 0.96, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="flex flex-col items-start justify-end gap-6">
+          <div>
+            <h2 className={`text-2xl font-bold ${isDark ? "text-light-quaternary" : "text-dark-quaternary"}`}>
+              Adonias Goes
+            </h2>
+          </div>
+
+          <div>
+            <p className={isDark ? "text-light-quaternary/80" : "text-dark-quaternary/80"}>
+              © 2026 Adonias Goes — All rights reserved
+            </p>
+          </div>
         </div>
-        
-        <div>
-          <p className="text-sm text-neutral-primary">© 2026 Adonias Goes — All rights reserved</p>
-        </div>
-      </div>
-    </footer>
-  )
+      </motion.footer>
+    </section>
+  );
 }

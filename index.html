@@ -2,35 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="/src/assets/IconProfile.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      (function () {
+        try {
+          var saved = window.localStorage.getItem("portfolio-theme");
+          var theme =
+            saved === "dark"
+              ? "dark"
+              : saved === "light"
+                ? "light"
+                : window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "dark"
+                  : "light";
+
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
+
+    
     <title>Adonias Goes</title>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // Polyfill when crypto.randomUUID is missing (some libs expect it at module load).
-      (function () {
-        try {
-          if (window.crypto && !window.crypto.randomUUID) {
-            window.crypto.randomUUID = function () {
-              var s = [];
-              var hex = "0123456789abcdef";
-              for (var i = 0; i < 36; i++) {
-                s[i] = hex[Math.floor(Math.random() * 16)];
-              }
-              s[14] = "4";
-              s[19] = hex[(parseInt(s[19], 16) & 0x3) | 0x8];
-              s[8] = s[13] = s[18] = s[23] = "-";
-              return s.join("");
-            };
-          }
-        } catch (e) {}
-      })();
-    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
