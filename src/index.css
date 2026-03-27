@@ -9,7 +9,8 @@
     /* Impede que scroll horizontal apareça */
     -ms-overflow-style: none; /* IE/Edge */
     scrollbar-width: none; /* Firefox */
-    overscroll-behavior: none; /* impede bounce do scroll */
+    overscroll-behavior-y: auto; /* mantém scroll vertical natural */
+    touch-action: pan-y; /* prioriza gesto vertical no mobile */
   }
   
   html::-webkit-scrollbar,
