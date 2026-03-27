@@ -109,7 +109,7 @@ const projects = [
         image: Project05, // substitua pela imagem do Aurora Pro
         name: "Aurora Pro",
         desc: "Aurora Pro is a Chrome extension and modern landing page that automates your Meta AI workflow. Generate images and animations in batches, monitor tasks in real time, and keep your files organized—boosting your creative flow with minimal manual effort.",
-        skills: ["React", "Tailwindcss", "Chrome Extension", "Meta AI"],
+        skills: ["React", "Tailwindcss", "Chrome Extension", "Meta AI", "JavaScript"],
         link: "https://aurorapro.netlify.app/",
         github: "https://github.com/adoniasgoesw/Aurora"
     }

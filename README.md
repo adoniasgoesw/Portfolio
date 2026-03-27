@@ -1,101 +1,105 @@
 # RPG Dev Portfolio (Front-end)
 
-A front-end developer portfolio built with an RPG / “dev adventurer” theme.
+An RPG-themed front-end developer portfolio built with React and Vite.
 
-This project is designed like a small quest hub: sections are presented as “missions”, the UI uses playful fantasy language, and the visuals (waves, stars, avatar) help create a lightweight game-like atmosphere—without sacrificing performance, accessibility, and responsive layout.
+This project presents skills and projects as a "quest journey", with smooth motion, dark/light theming, and a responsive UI focused on performance and clean UX.
 
+## Stacks and tools
 
+- **Framework**: React 19 + Vite 8
+- **Styling**: Tailwind CSS v4 + custom design tokens in `src/index.css`
+- **Animation**: Motion (`motion/react`)
+- **Icons**: Lucide + React Icons
+- **Utilities/UI**: `clsx`, `class-variance-authority`, `tailwind-merge`, `tw-animate-css`
+- **Contact email**: EmailJS (`@emailjs/browser`) with env-based configuration
 
-## What’s inside
+## Architecture
 
-- **Dark/Light theme**: persisted in `localStorage` and applied before the first paint to avoid flashing on refresh.
-- **Scroll-based section entrances**: sections animate when entering the viewport, both while scrolling down and back up.
-- **RPG-style visuals**: waves and a starfield background in dark mode.
-- **Responsive UI**: layout and spacing are built mobile-first with Tailwind.
+### Application flow
 
-## Tech stack
+- `src/main.jsx`: boots React and wraps app with `ThemeProvider`.
+- `src/App.jsx`: composes page sections in order:
+  - `Navbar`
+  - `HeroSection`
+  - `SkillSection`
+  - `ProjectSection`
+  - `ContactSection`
+  - `Footer`
 
-- **React** (Vite)
-- **Tailwind CSS v4**
-- **Motion** (`motion/react`) for animations
-- **Lucide** icons (`lucide-react`)
-- **shadcn/ui** + utilities (`class-variance-authority`, `clsx`, `tailwind-merge`, `tw-animate-css`)
+### Data layer
 
-## Project structure
+- `src/data/data.jsx` is the central content source:
+  - `navItems` for navbar links
+  - `skills` for skills cards
+  - `projects` for project cards and modal details
 
-Core folders you’ll interact with:
+### UI composition
 
-- **`src/sections/`**: page sections (Navbar, Hero, Skills, Projects, Contact, Footer)
-- **`src/components/`**: reusable UI building blocks (buttons, cards, backgrounds, etc.)
-- **`src/context/`**: global state (theme persistence + toggle animation)
-- **`src/assets/`**: images / documents used by the UI
-- **`public/`**: static files copied to `dist/` on build (including Netlify redirects)
+- `src/sections/`: top-level page sections and orchestration.
+- `src/components/`: reusable pieces:
+  - `cards/` (`SkillCard`, `ProjectCard`, `FormContact`)
+  - `modal/` (`Modal` for project details)
+  - `backgrounds/` (`Waves`, `Avatar`, `ToggleTheme`)
+  - `buttons/` shared button API
 
-Entry points:
+### State and behavior
 
-- **`src/main.jsx`**: React root + providers
-- **`src/App.jsx`**: section composition and page layout
+- `src/context/ThemeContext.jsx`
+  - manages dark/light theme
+  - persists selection in local storage
+  - applies theme early to prevent flash on refresh
+- Local section state handles interactions like:
+  - project modal open/close
+  - selected project payload
+  - form input and send status
 
-## Theme system (colors + behavior)
+### Hooks
 
-This project uses CSS variables for theme tokens, controlled by a `data-theme` attribute on `<html>`.
+- `src/hooks/useSendEmail.js`
+  - encapsulates EmailJS send logic
+  - exposes `sendEmail`, `sending`, `success`, `error`, `clearStatus`
+  - reads env vars and handles missing configuration safely
 
-- **Where tokens live**: `src/index.css` (`--color-light-*`, `--color-dark-*`, `--color-accent-primary`, etc.)
-- **How it switches**: `ThemeProvider` updates `document.documentElement.dataset.theme`
-- **No flash on refresh**: `index.html` sets `data-theme` early (before React mounts)
+## Features
 
-### Wave colors
+- Dark/light theme with smooth UX and readable contrast
+- Animated entrances on scroll (sections and cards)
+- Skill cards with level-based animated progress/counting
+- Project cards opening a right-side modal with details and links
+- Contact form with typed placeholders and real email send flow
+- Mobile/tablet horizontal scroll prevention and responsive layout
 
-The waves are SVG paths filled using CSS variables:
+## Environment variables
 
-- `--cloud-layer-1`
-- `--cloud-layer-2`
-- `--cloud-layer-3`
+Create a `.env` file in the project root:
 
-Those variables automatically point to the light/dark palette via `:root` and `:root[data-theme="dark"]`.
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_CONTACT_TO_EMAIL=adoniasgoes86@gmail.com
+```
 
-## Animations
+Example payload sent to EmailJS template:
 
-- **Hero**: initial entrance animations for the main content, waves and avatar.
-- **Section headers** (`Skills`, `Projects`, `Contact`): animate **from bottom to top** + fade in on viewport entry.
-- **Footer**: content animates with **scale + opacity** while keeping the wave layer static.
-- **Skill cards**: cards fade/slide in on scroll; progress bars and percentages animate with delay based on rank.
-- **Contact form**: form card fades/slides in first, then placeholders type sequentially (`name`, `email`, `message`).
-
-## Latest updates
-
-- Replaced the browser icon with `Avatar3` (`/favicon.png`).
-- Improved skill card UI for dark mode (better contrast, cleaner typography, smoother hover highlight).
-- Added two-line clamp with ellipsis for long skill descriptions.
-- Added animated rank progress (bar + counter from 0 to target value).
-- Prevented horizontal side scrolling on mobile/tablet by locking x-overflow.
-- Updated section triggers to replay animations when re-entering viewport.
-- Added dark-mode visual polish to contact form (contrast, focus, and input readability).
-- Added sequential typing placeholder effect in the contact form after card entrance animation.
+- `title`
+- `name`
+- `time`
+- `message`
+- `email`
+- `to_email`
 
 ## Development
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Run locally:
-
-```bash
 npm run dev
 ```
 
-Build for production:
+Build and preview:
 
 ```bash
 npm run build
-```
-
-Preview the production build:
-
-```bash
 npm run preview
 ```
 
@@ -107,25 +111,19 @@ npm run lint
 
 ## Deploy (Netlify)
 
-This repo includes a SPA redirect rule for Netlify at `public/_redirects`:
+SPA redirect is configured via `public/_redirects`:
 
-```
+```txt
 /*    /index.html   200
 ```
 
-That prevents 404s on refresh and direct linking when using client-side routing.
+## Developer
 
----
-
-Developer  
-**Adonias Goes**
-
+**Adonias Goes**  
 GitHub: `@adoniasgoesw`
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are always welcome! Feel free to open an issue or submit a pull request.
+Contributions are welcome. Feel free to open an issue or submit a pull request.
 
-Developed with ❤️ 
-
-⭐ If this project was useful to you, consider giving it a star!
+If this project helps you, consider giving it a star.

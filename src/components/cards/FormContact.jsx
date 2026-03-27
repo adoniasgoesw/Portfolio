@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import Button from "../buttons/Button";
+import { Send } from "lucide-react";
+import { useSendEmail } from "../../hooks/useSendEmail";
 
 export default function FormContact({ startTyping = false }) {
     const { theme } = useTheme();
     const isDark = theme === "dark";
+    const { sendEmail, sending, success, error, clearStatus } = useSendEmail();
 
     const [namePlaceholder, setNamePlaceholder] = useState("");
     const [emailPlaceholder, setEmailPlaceholder] = useState("");
     const [messagePlaceholder, setMessagePlaceholder] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         if (!startTyping) return;
@@ -43,6 +50,30 @@ export default function FormContact({ startTyping = false }) {
         };
     }, [startTyping]);
 
+    const sendForm = async () => {
+        clearStatus();
+        try {
+            const ok = await sendEmail({
+                name: name.trim(),
+                email: email.trim(),
+                message: message.trim(),
+            });
+
+            if (ok) {
+                setName("");
+                setEmail("");
+                setMessage("");
+            }
+        } catch {
+            // Extra safety: never let submit crash UI on unexpected errors.
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await sendForm();
+    };
+
     return (
         <form className={[
             "flex flex-col gap-5 items-start justify-center rounded-xl border-2 p-6",
@@ -50,7 +81,7 @@ export default function FormContact({ startTyping = false }) {
             isDark
                 ? "border-light-quaternary/10 bg-dark-secondary/30 backdrop-blur-sm"
                 : "border-neutral-primary/30 bg-white/55",
-        ].join(" ")}>
+        ].join(" ")} onSubmit={handleSubmit}>
             <div className={[
                 "w-full border-b-2 pb-2",
                 isDark ? "border-light-quaternary/15" : "border-neutral-primary/20",
@@ -70,6 +101,9 @@ export default function FormContact({ startTyping = false }) {
                 name="name"
                 id="name"
                 placeholder={namePlaceholder}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
                 className={[
                     "w-full border-2 rounded-xl py-2 px-4 outline-none transition-all duration-200",
                     "focus:border-accent-primary focus:ring-2 focus:ring-accent-primary/30",
@@ -90,6 +124,9 @@ export default function FormContact({ startTyping = false }) {
                 name="email"
                 id="email"
                 placeholder={emailPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className={[
                     "w-full border-2 rounded-xl py-2 px-4 outline-none transition-all duration-200",
                     "focus:border-accent-primary focus:ring-2 focus:ring-accent-primary/30",
@@ -106,10 +143,12 @@ export default function FormContact({ startTyping = false }) {
                 isDark ? "text-light-quaternary/70" : "text-neutral-primary",
             ].join(" ")}>Your Mission</label>
             <textarea
-                type="text"
                 name="message"
                 id="message"
                 placeholder={messagePlaceholder}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
                 className={[
                     "w-full border-2 rounded-xl py-2 pb-20 px-4 outline-none transition-all duration-200",
                     "focus:border-accent-primary focus:ring-2 focus:ring-accent-primary/30",
@@ -119,6 +158,22 @@ export default function FormContact({ startTyping = false }) {
                 ].join(" ")}
             />
             </div>
+
+            {success ? (
+                <p className="text-xs text-green-500">Message sent successfully.</p>
+            ) : null}
+            {error ? (
+                <p className="text-xs text-red-500">{error}</p>
+            ) : null}
+
+            <Button
+                type="submit"
+                variant="secondary"
+                icon={Send}
+                text={sending ? "Sending..." : "Send Mission"}
+                disabled={sending}
+                className="w-full"
+            />
         </form>
 
     )
