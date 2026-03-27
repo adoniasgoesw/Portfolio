@@ -89,6 +89,8 @@ Example payload sent to EmailJS template:
 - `email`
 - `to_email`
 
+**Netlify production:** Vite replaces `import.meta.env.VITE_*` at **build** time. Committing `.env` is not required (and should stay ignored). In the Netlify dashboard: **Site configuration → Environment variables** add the same `VITE_*` keys (scope **Production**, and **Builds** if offered), save, then **Deploys → Trigger deploy → Clear cache and deploy site** so the bundle is rebuilt with those values.
+
 ## Development
 
 ```bash

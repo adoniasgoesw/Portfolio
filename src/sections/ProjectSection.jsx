@@ -37,6 +37,7 @@ export default function ProjectSection() {
                                   id: idx + 1,
                                   name: project.name,
                                   desc: project.desc,
+                                  situation: project.situation,
                                   image: project.image,
                                   link: project.link,
                                   github: project.github,

@@ -11,10 +11,19 @@ export default function Modal({ open, onClose, project }) {
 
   const textClass = isDark ? "text-light-quaternary" : "text-dark-quaternary";
 
+  const hasValidUrl = (url) => {
+    if (url == null) return false;
+    const s = String(url).trim();
+    return s.length > 0 && s !== "#";
+  };
+
   const handleOpenLink = (url) => {
-    if (!url) return;
+    if (!hasValidUrl(url)) return;
     window.open(url, "_blank", "noopener,noreferrer");
   };
+
+  const hasPreview = hasValidUrl(project?.link);
+  const hasGithub = hasValidUrl(project?.github);
 
   return (
     <div className="fixed inset-0 z-[99] h-[100vdh]">
@@ -55,10 +64,24 @@ export default function Modal({ open, onClose, project }) {
             />
           </div>
 
-          {/* Info */}
-          <p className={[textClass, "uppercase text-xs tracking-widest opacity-70"].join(" ")}>
-            Project {project?.id ? String(project.id).padStart(2, "0") : ""}
-          </p>
+          {/* Info: project id + situation (same row, no situation label) */}
+          <div className="flex flex-wrap items-center gap-2 justify-between">
+            <p className={[textClass, "uppercase text-xs tracking-widest opacity-70"].join(" ")}>
+              Project {project?.id ? String(project.id).padStart(2, "0") : ""}
+            </p>
+            {project?.situation ? (
+              <span
+                className={[
+                  "text-xs px-3 py-1 rounded-full font-medium shrink-0",
+                  isDark
+                    ? "bg-accent-primary/20 text-light-quaternary"
+                    : "bg-accent-primary/15 text-title-secondary",
+                ].join(" ")}
+              >
+                {project.situation}
+              </span>
+            ) : null}
+          </div>
 
           <h3 className={[textClass, "text-2xl font-bold"].join(" ")}>
             {project?.name}
@@ -88,13 +111,20 @@ export default function Modal({ open, onClose, project }) {
             icon={Eye}
             text="Preview Project"
             className="w-full"
+            disabled={!hasPreview}
+            ariaLabel={
+              hasPreview ? "Open project preview" : "Preview not available"
+            }
             onClick={() => handleOpenLink(project?.link)}
           />
 
           <Button
             variant="outlineSecondary"
             icon={FaGithub}
-        
+            disabled={!hasGithub}
+            ariaLabel={
+              hasGithub ? "Open GitHub repository" : "GitHub link not available"
+            }
             onClick={() => handleOpenLink(project?.github)}
           />
         </div>

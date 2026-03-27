@@ -7,7 +7,7 @@ import { useSendEmail } from "../../hooks/useSendEmail";
 export default function FormContact({ startTyping = false }) {
     const { theme } = useTheme();
     const isDark = theme === "dark";
-    const { sendEmail, sending, success, error, clearStatus } = useSendEmail();
+    const { sendEmail, sending, success, clearStatus } = useSendEmail();
 
     const [namePlaceholder, setNamePlaceholder] = useState("");
     const [emailPlaceholder, setEmailPlaceholder] = useState("");
@@ -161,9 +161,6 @@ export default function FormContact({ startTyping = false }) {
 
             {success ? (
                 <p className="text-xs text-green-500">Message sent successfully.</p>
-            ) : null}
-            {error ? (
-                <p className="text-xs text-red-500">{error}</p>
             ) : null}
 
             <Button

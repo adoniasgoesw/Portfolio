@@ -10,8 +10,8 @@ export default function Tag({
 
   const variants = {
     primary: isDark
-      ? "text-light-quaternary text-xs bg-light-secondary/10 rounded-full px-4 py-1 hover:bg-dark-primary/70 transition-all duration-300"
-      : "text-light-quaternary  text-xs bg-light-secondary rounded-full px-4 py-1 hover:bg-light-primary/70 transition-all duration-300",
+      ? "text-light-quaternary text-xs bg-light-secondary/10 rounded-full px-4 py-1 hover:bg-light-secondary/20 transition-all duration-300"
+      : "text-light-quaternary  text-xs bg-light-secondary rounded-full px-4 py-1 hover:bg-light-secondary/70 transition-all duration-300",
     secondary: isDark
       ? "text-light-quaternary  text-xs bg-light-secondary/10 rounded-full px-4 py-1 hover:bg-dark-primary/70 transition-all duration-300"
       : "text-dark-quaternary text-xs bg-light-secondary rounded-full px-4 py-1 hover:bg-light-primary/70 transition-all duration-300",

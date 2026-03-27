@@ -4,7 +4,6 @@ import emailjs from "@emailjs/browser";
 export function useSendEmail() {
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
 
   const sendEmail = useCallback(async ({ name, email, message }) => {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -18,18 +17,21 @@ export function useSendEmail() {
         !serviceId ? "VITE_EMAILJS_SERVICE_ID" : null,
         !templateId ? "VITE_EMAILJS_TEMPLATE_ID" : null,
         !publicKey ? "VITE_EMAILJS_PUBLIC_KEY" : null,
-      ]
-        .filter(Boolean)
-        .join(", ");
+      ].filter(Boolean);
 
+      console.error(
+        "[EmailJS] Email service is not configured. Missing environment variables:",
+        missing.join(", ")
+      );
+      console.error(
+        "[EmailJS] Vite bakes VITE_* at build time. On Netlify: Site settings → Environment variables → add these keys for Production, then trigger a new deploy."
+      );
       setSuccess(false);
-      setError(`Email service is not configured. Missing: ${missing}`);
       return false;
     }
 
     setSending(true);
     setSuccess(false);
-    setError("");
 
     try {
       await emailjs.send(
@@ -49,7 +51,7 @@ export function useSendEmail() {
       setSuccess(true);
       return true;
     } catch (err) {
-      setError("Failed to send message. Please try again.");
+      console.error("[EmailJS] Failed to send message:", err);
       return false;
     } finally {
       setSending(false);
@@ -58,15 +60,12 @@ export function useSendEmail() {
 
   const clearStatus = useCallback(() => {
     setSuccess(false);
-    setError("");
   }, []);
 
   return {
     sendEmail,
     sending,
     success,
-    error,
     clearStatus,
   };
 }
-

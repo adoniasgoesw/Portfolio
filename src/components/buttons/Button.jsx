@@ -57,7 +57,13 @@ export default function Button({
       disabled={disabled}
       aria-label={ariaLabel}
       onClick={handleClick}
-      className={[variantClass, className].filter(Boolean).join(" ")}
+      className={[
+        variantClass,
+        className,
+        "disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:!scale-100 disabled:active:!scale-100",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       {...props}
     >
       {Icon ? (
