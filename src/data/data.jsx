@@ -80,6 +80,16 @@ const projects = [
         link: "#",
         github: "#"
     },
+
+    {
+        image: Project05,
+        name: "Aurora Pro - Meta AI",
+        desc: "Developed for a client. Aurora Pro is a Chrome extension and landing page that automates creative workflows on Meta AI — batch image and animation generation, real-time task monitoring, and automatic file organization. Features smart error handling, retry queues, and bilingual support (EN/PT-BR).",
+        situation: "Live",
+        skills: ["React", "Tailwindcss", "Chrome Extension", "Meta AI", "JavaScript"],
+        link: "https://aurorapro.netlify.app/",
+        github: "https://github.com/adoniasgoesw/Aurora"
+    },
     {   
         image: Project01,
         name: "iPhone 17 Experience",
@@ -117,17 +127,9 @@ const projects = [
         skills: ["React", "Tailwindcss"],
         link:"https://adoniasgoes.netlify.app/",
         github: "https://github.com/adoniasgoesw/Portfolio/tree/main"
-    },
-
-    {
-        image: Project05,
-        name: "Aurora Pro - Meta AI",
-        desc: "Developed for a client. Aurora Pro is a Chrome extension and landing page that automates creative workflows on Meta AI — batch image and animation generation, real-time task monitoring, and automatic file organization. Features smart error handling, retry queues, and bilingual support (EN/PT-BR).",
-        situation: "Live",
-        skills: ["React", "Tailwindcss", "Chrome Extension", "Meta AI", "JavaScript"],
-        link: "https://aurorapro.netlify.app/",
-        github: "https://github.com/adoniasgoesw/Aurora"
     }
+
+    
 
    
 ]
