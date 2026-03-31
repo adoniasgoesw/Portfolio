@@ -11,6 +11,9 @@ export default function ProjectSection() {
     const isDark = theme === "dark";
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
+    const totalProjects = projects.length;
+    const remainder = totalProjects % 3;
+
     return (
         <section className={`${isDark ? "bg-dark-quaternary" : "bg-light-quaternary"} px-4 py-16 sm:px-6 md:px-8 lg:px-10 xl:px-40 min-h-[100vdh] flex flex-col relative  `}>
             <div className="max-7xl mx-auto flex flex-col gap-15 justify-center items-center">
@@ -25,14 +28,31 @@ export default function ProjectSection() {
                 </motion.div>
                 </div>
 
-                <div className="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                    {projects.map((project, idx) => (
-                        <ProjectCard
+                <div className="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 items-stretch justify-center">
+                    {projects.map((project, idx) => {
+                        const isLast = idx === totalProjects - 1;
+                        const isSecondLast = idx === totalProjects - 2;
+
+                        // Center last row on md+ when there are 1 or 2 cards left
+                        const placementClasses =
+                          remainder === 1 && isLast
+                            ? "md:col-start-2" // single card in middle column
+                            : remainder === 2 && isSecondLast
+                              ? "md:col-start-2" // first of the last pair starts in column 2
+                              : "";
+
+                        return (
+                          <div
                             key={project.name}
-                            id={idx + 1}
-                            name={project.name}
-                            desc={project.desc}
-                            onOpen={() => {
+                            className={["flex justify-center", placementClasses]
+                              .filter(Boolean)
+                              .join(" ")}
+                          >
+                            <ProjectCard
+                              id={idx + 1}
+                              name={project.name}
+                              desc={project.desc}
+                              onOpen={() => {
                                 setSelectedProject({
                                   id: idx + 1,
                                   name: project.name,
@@ -45,8 +65,10 @@ export default function ProjectSection() {
                                 });
                                 setModalOpen(true);
                               }}
-                        />
-                    ))}
+                            />
+                          </div>
+                        );
+                    })}
                 </div>
             </div>
 

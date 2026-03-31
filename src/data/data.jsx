@@ -7,6 +7,7 @@ import Project03 from "../assets/Project03.jpeg"
 import Project04 from "../assets/Project04.jpeg"
 import Project05 from "../assets/Project05.jpeg"
 import Project06 from "../assets/Project06.jpeg"
+import Project07 from "../assets/Project07.jpeg"
 const navItems = [
     {
        label: "Home",
@@ -77,6 +78,16 @@ const projects = [
         desc: "NexAgender is a smart scheduling and service management platform currently in development. Designed for professionals and businesses, it simplifies appointments, client management, and financial tracking while introducing intelligent automation and data-driven insights.",
         situation: "Developing",
         skills: ["Next.js", "Node.js", "PostgreSQL", "Tailwindcss"],
+        link: "#",
+        github: "#"
+    },
+
+    {
+        image: Project07,
+        name: "TeachAI – AI-Powered Audio Learning from PDFs",
+        desc: "TeachAI is an AI-powered platform that converts PDFs into engaging, voice-based learning experiences. By analyzing document structure and extracting key concepts, it delivers clear, conversational audio explanations that feel like a real teacher guiding the user. The system also generates quizzes and flashcards to reinforce learning, making it possible to study smarter, faster, and completely hands-free.",
+        situation: "Developing",
+        skills: ["React.js", "Node.js", "PostgreSQL", "Auth.js", "Tailwindcss", "AI Integration"],
         link: "#",
         github: "#"
     },

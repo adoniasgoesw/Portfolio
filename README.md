@@ -37,10 +37,39 @@ This project presents skills and projects as a "quest journey", with smooth moti
 
 - `src/sections/`: top-level page sections and orchestration.
 - `src/components/`: reusable pieces:
-  - `cards/` (`SkillCard`, `ProjectCard`, `FormContact`)
-  - `modal/` (`Modal` for project details)
-  - `backgrounds/` (`Waves`, `Avatar`, `ToggleTheme`)
-  - `buttons/` shared button API
+  - `backgrounds/` – decorative / layout elements (`Avatar`, `Waves`, theme toggle)
+  - `buttons/` – shared button API for solid / outline / icon variants
+  - `cards/` – skill, project and contact form cards
+  - `modal/` – project details modal
+  - `ui/` – shadcn-style primitives used by other components
+
+## Project structure
+
+High‑level folder layout of the front-end:
+
+```txt
+game/                        # This project
+├─ public/
+│  └─ _redirects             # Netlify SPA redirect config
+├─ src/
+│  ├─ assets/                # Images (projects, avatars, background art, CV)
+│  ├─ components/            # Reusable, presentation components
+│  │  ├─ backgrounds/        # Decorative background and hero elements
+│  │  ├─ buttons/            # Custom button component (variants, icon-only, etc.)
+│  │  ├─ cards/              # Cards for skills, projects and contact form
+│  │  ├─ modal/              # Project details modal
+│  │  └─ ui/                 # Low-level UI primitives (shadcn-style)
+│  ├─ context/               # React contexts (theme, etc.)
+│  ├─ data/                  # Static data for navbar, skills, projects
+│  ├─ hooks/                 # Custom React hooks (e.g. `useSendEmail`)
+│  ├─ sections/              # Page sections (Hero, Skills, Projects, Contact, Footer)
+│  ├─ index.css              # Tailwind + design tokens and global styles
+│  ├─ App.jsx                # Page layout / section composition
+│  └─ main.jsx               # React + ThemeProvider bootstrap
+├─ .env.example              # Example env vars for EmailJS (not used in prod)
+├─ package.json              # Dependencies and scripts
+├─ tsconfig.json             # TypeScript tooling support (editor, JSX, paths)
+└─ vite.config.*             # Vite config + Tailwind plugin
 
 ### State and behavior
 
