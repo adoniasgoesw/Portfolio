@@ -24,7 +24,7 @@ export default function ContactSection() {
                     title={
                       <>
                         Ready for the{" "}
-                        <span className="font-extrabold text-accent-primary">Next Mission</span>
+                        <span className="font-extrabold text-accent-primary">Next Mission</span> ?
                       </>
                     }
                     description="Send a message and let's build something impactful together."
