@@ -42,11 +42,19 @@ export default function ProjectSection() {
                               : "";
 
                         return (
-                          <div
+                          <motion.div
                             key={project.name}
                             className={["flex justify-center", placementClasses]
                               .filter(Boolean)
                               .join(" ")}
+                            initial={{ y: 24, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ amount: 0.25 }}
+                            transition={{
+                              duration: 0.45,
+                              ease: "easeOut",
+                              delay: 0.1 + idx * 0.05,
+                            }}
                           >
                             <ProjectCard
                               id={idx + 1}
@@ -66,7 +74,7 @@ export default function ProjectSection() {
                                 setModalOpen(true);
                               }}
                             />
-                          </div>
+                          </motion.div>
                         );
                     })}
                 </div>
