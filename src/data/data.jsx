@@ -101,15 +101,7 @@ const projects = [
         link: "https://aurorapro.netlify.app/",
         github: "https://github.com/adoniasgoesw/Aurora"
     },
-    {   
-        image: Project01,
-        name: "iPhone 17 Experience",
-        desc: "Explore the ultimate iPhone 17 Pro – titanium design, pro-level camera, blazing A18 chip, and features crafted for the next generation of mobile performance",
-        situation: "Live",
-        skills: ["React", "Tailwindcss"],
-        link:"https://iphonefornow.netlify.app/",
-        github: "https://github.com/adoniasgoesw/iPhone-17"
-    },
+   
 
     {   image: Project02,
         name: "Layers – The Design Flow",
@@ -118,6 +110,16 @@ const projects = [
         skills: ["React", "Tailwindcss"],
         link:"https://layersdesigntools.netlify.app/",
         github: "https://github.com/adoniasgoesw/Layers-Design-Tools"
+    },
+
+     {   
+        image: Project01,
+        name: "iPhone 17 Experience",
+        desc: "Explore the ultimate iPhone 17 Pro – titanium design, pro-level camera, blazing A18 chip, and features crafted for the next generation of mobile performance",
+        situation: "Live",
+        skills: ["React", "Tailwindcss"],
+        link:"https://iphonefornow.netlify.app/",
+        github: "https://github.com/adoniasgoesw/iPhone-17"
     },
 
     {
